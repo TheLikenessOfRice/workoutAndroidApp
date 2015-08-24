@@ -37,6 +37,13 @@ public class StartPage extends Activity{
 
     */
     }
+
+    public void settingsClicked(View view){
+        Intent settings = new Intent(StartPage.this, Settings.class);
+        startActivity(settings);
+
+    }
+
     public void foodSearchClick(View view){
         Intent i = new Intent(StartPage.this, MainActivity.class);
         startActivity(i);

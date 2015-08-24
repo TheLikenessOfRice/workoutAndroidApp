@@ -4,4 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_food_info">FoodInfo</string>
+    <string name="search_foods">Search Foods</string>
+    <string name="glass">magnify_glass</string>
+    <string name="apple">apple_pic</string>
+    <string name="person_info">Enter Personal Info</string>
 </resources>

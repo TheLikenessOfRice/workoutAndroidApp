@@ -27,6 +27,11 @@
         </activity>
 
         <activity
+            android:name=".Settings"
+            android:label="settings">
+        </activity>
+
+        <activity
             android:name=".FoodInfo"
             android:label="@string/title_activity_food_info" >
         </activity>

@@ -25,13 +25,14 @@
                 android:layout_height="100dp"
                 android:id="@+id/imageView"
                 android:src="@drawable/apple_black_and_white_hi_edited"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:contentDescription="@string/apple" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Enter Personal Info"
+                android:text="@string/person_info"
                 android:id="@+id/textView"
                 android:layout_gravity="center_vertical" />
 
@@ -54,15 +55,36 @@
                 android:id="@+id/imageVie"
                 android:src="@drawable/magnify_glass_small"
                 android:layout_marginRight="20dp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:contentDescription="@string/glass" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Search Foods"
-                android:id="@+id/textView2"
-                android:layout_gravity="center_vertical" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/search_foods"
+                    android:id="@+id/textView2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_centerVertical="true" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:id="@+id/settingButton"
+                    android:layout_marginBottom="10dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/gear_lighter"
+                    android:onClick="settingsClicked" />
+            </RelativeLayout>
+
         </TableRow>
     </TableLayout>
 
