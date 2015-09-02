@@ -19,7 +19,8 @@
 
         <activity
             android:name=".StartPage"
-            android:label="startPage">
+            android:label="startPage"
+            android:noHistory = "true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -45,7 +45,6 @@ import java.util.HashMap;
 public class MainActivity extends ListActivity {
 
 
-
     ArrayList<HashMap<String, String>> foodItems;
     JSONArray foods;
     JSONObject jObject;
@@ -55,6 +54,7 @@ public class MainActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.d("restart", "searchrestart");
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -71,7 +71,10 @@ public class MainActivity extends ListActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
 
     public void searchButtonClicked(View view) {
         api = "http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=r&max=25&offset=0&api_key=vdMQ5GuTHv1uDeZiOiu7kAIpTfIP9u7J35J5U6R9";
@@ -83,13 +86,13 @@ public class MainActivity extends ListActivity {
         String searchItem;
         searchItem = search.getText().toString();
         searchItem = searchItem.replaceAll(" ", "_");
-        searchItem = searchItem.replaceAll("\\s","");
+        searchItem = searchItem.replaceAll("\\s", "");
         Log.d("results", "item: " + searchItem);
-        api = api.replace("butter",searchItem);
+        api = api.replace("butter", searchItem);
         Log.d("results", "api: " + api);
         View newView = this.getCurrentFocus();
         if (newView != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
@@ -99,7 +102,7 @@ public class MainActivity extends ListActivity {
     protected class CallClient extends AsyncTask<Void, Void, Void> {
         boolean internetConnection = true;
         ProgressDialog pDialog;
-        String[] from = new String[] {"group", "name"};
+        String[] from = new String[]{"group", "name"};
         int[] to = new int[]{R.id.groupText, R.id.nameText};
 
 
@@ -110,15 +113,13 @@ public class MainActivity extends ListActivity {
             Log.d("results", "internet2");
 
             Log.d("results", "NetworkInfo: " + activeNetworkInfo);
-            if(activeNetworkInfo == null)
-            {
+            if (activeNetworkInfo == null) {
                 return false;
             }
             Log.d("results", "IsConnecting: " + activeNetworkInfo.isConnectedOrConnecting());
             return activeNetworkInfo.isConnectedOrConnecting();
 
         }
-
 
 
         @Override
@@ -134,7 +135,7 @@ public class MainActivity extends ListActivity {
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            if(isNetworkAvailable()) {
+            if (isNetworkAvailable()) {
 
                 Log.d("results", "internet true");
 
@@ -212,9 +213,7 @@ public class MainActivity extends ListActivity {
                 if (foods == null) {
                     Log.d("results", "foods is null");
                 }
-            }
-            else
-            {
+            } else {
                 internetConnection = false;
             }
 
@@ -227,29 +226,29 @@ public class MainActivity extends ListActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if(pDialog.isShowing())
+            if (pDialog.isShowing())
                 pDialog.dismiss();
-            if(!internetConnection){
+            if (!internetConnection) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setMessage("No Internet Connection Detected")
                         .setTitle("No Connection")
                         .setCancelable(false);
-                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                     }
                 });
                 AlertDialog alert = builder.create();
                 alert.show();
-            }
-            else{
+            } else {
                 Log.d("results", "made it here13");
                 DisplayList displayList = new DisplayList(from, to);
             }
         }
 
     }
-    public class DisplayList{
+
+    public class DisplayList {
 
         String[] from;
         int[] to;
@@ -260,7 +259,7 @@ public class MainActivity extends ListActivity {
             this.from = from;
             this.to = to;
             onCreateHelper();
-            }
+        }
 
 
         protected void onCreateHelper() {
@@ -268,30 +267,7 @@ public class MainActivity extends ListActivity {
             ListAdapter adapter = new SimpleAdapter(MainActivity.this, foodItems, R.layout.list_layout, from, to);
             setListAdapter(adapter);
             Log.d("results", "made it here16");
-            }
-    }
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
+

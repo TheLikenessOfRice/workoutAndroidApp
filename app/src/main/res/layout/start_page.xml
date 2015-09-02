@@ -3,12 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.samps_000.workoutapp.StartPage">
+    tools:context="com.example.samps_000.workoutapp.StartPage"
+    >
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:stretchColumns="*">
+        android:stretchColumns="*"
+        android:id="@+id/twoBut">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -54,7 +56,7 @@
                 android:layout_height="100dp"
                 android:id="@+id/imageVie"
                 android:src="@drawable/magnify_glass_small"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="0dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/glass" />
 

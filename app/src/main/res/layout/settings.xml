@@ -16,16 +16,6 @@
         android:layout_marginStart="29dp"
         android:layout_marginTop="29dp" />
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:id="@+id/themes"
-        android:layout_toRightOf="@+id/changeTheme"
-        android:layout_toEndOf="@+id/changeTheme"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="23dp" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,4 +25,27 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:onClick="saveClicked" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dark"
+        android:id="@+id/darkButton"
+        android:layout_alignTop="@+id/changeTheme"
+        android:layout_toRightOf="@+id/changeTheme"
+        android:layout_toEndOf="@+id/changeTheme"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:onClick="darkButtonClicked" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light"
+        android:id="@+id/lightButton"
+        android:layout_alignTop="@+id/darkButton"
+        android:layout_toRightOf="@+id/darkButton"
+        android:layout_toEndOf="@+id/darkButton"
+        android:layout_marginLeft="20dp"
+        android:onClick="lightButtonClicked" />
 </RelativeLayout>

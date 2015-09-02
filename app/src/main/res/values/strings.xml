@@ -7,5 +7,5 @@
     <string name="search_foods">Search Foods</string>
     <string name="glass">magnify_glass</string>
     <string name="apple">apple_pic</string>
-    <string name="person_info">Enter Personal Info</string>
+    <string name="person_info">Calculate</string>
 </resources>
