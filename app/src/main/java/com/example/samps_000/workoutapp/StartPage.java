@@ -18,18 +18,35 @@ public class StartPage extends Activity{
         setContentView(R.layout.start_page);
         TableLayout twoBut = (TableLayout) findViewById(R.id.twoBut);
         final View row = (View) findViewById(R.id.bottomRow);
-        final TableRow rowName = (TableRow) findViewById(R.id.bottomRow);
+        final View rowTop = (View) findViewById(R.id.topRow);
+        final TableRow topTableRow = (TableRow) findViewById(R.id.topRow);
+        final TableRow bottomTableRow = (TableRow) findViewById(R.id.bottomRow);
         row.setOnTouchListener(
                 new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if(event.getAction() == MotionEvent.ACTION_DOWN) {
-                            rowName.setBackgroundResource(R.drawable.table_clicked);
+                            bottomTableRow.setBackgroundResource(R.drawable.table_clicked);
                         }
                         if(event.getAction() == MotionEvent.ACTION_UP){
-                            rowName.setBackgroundResource(R.drawable.table);
+                            bottomTableRow.setBackgroundResource(R.drawable.table);
                         }
                         Intent i = new Intent(StartPage.this, MainActivity.class);
+                        startActivity(i);
+                        return true;
+                    }
+                });
+        rowTop.setOnTouchListener(
+                new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                            topTableRow.setBackgroundResource(R.drawable.table_clicked);
+                        }
+                        if(event.getAction() == MotionEvent.ACTION_UP){
+                            topTableRow.setBackgroundResource(R.drawable.table);
+                        }
+                        Intent i = new Intent(StartPage.this, CalcActivity.class);
                         startActivity(i);
                         return true;
                     }
