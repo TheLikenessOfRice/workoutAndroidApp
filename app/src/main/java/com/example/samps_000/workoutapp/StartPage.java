@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 
 public class StartPage extends Activity{
-//bananas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("testing", "start create");
