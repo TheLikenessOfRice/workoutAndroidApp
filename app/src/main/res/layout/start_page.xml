@@ -20,7 +20,8 @@
             android:paddingBottom="0dp"
             android:id="@+id/topRow"
             android:background="@drawable/table"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:onClick="calculateClicked">
 
             <ImageView
                 android:layout_width="100dp"
@@ -46,10 +47,10 @@
             android:layout_weight="1"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
-            android:onClick="foodSearchClick"
             android:background="@drawable/table_button"
             android:layout_gravity="center"
-            android:id="@+id/bottomRow">
+            android:id="@+id/bottomRow"
+            android:onClick="foodSearchClick">
 
             <ImageView
                 android:layout_width="100dp"

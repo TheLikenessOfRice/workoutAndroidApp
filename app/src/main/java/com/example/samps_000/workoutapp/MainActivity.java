@@ -71,13 +71,6 @@ public class MainActivity extends ListActivity {
 
     }
 
-    //bananas
-
-    @Override
-    public void onBackPressed() {
-        finish();
-    }
-
     public void searchButtonClicked(View view) {
         api = "http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=r&max=25&offset=0&api_key=vdMQ5GuTHv1uDeZiOiu7kAIpTfIP9u7J35J5U6R9";
         Log.d("results", "searchButtonClicked");
