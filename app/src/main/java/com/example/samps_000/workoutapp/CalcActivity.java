@@ -43,7 +43,6 @@ public class CalcActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        //Intent i = new Intent(this,ResultsActivity.class);  // intent
         String myString = "beto";
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
@@ -57,9 +56,6 @@ public class CalcActivity extends Activity implements View.OnClickListener {
         int height2Num = Integer.parseInt(str4);
         int inches;
         double cm; //centimeters
-
-        //intent test
-       // i.putExtra("qstring",myString);
 
         //Conversions
         double W = (double) weightNum;  // weight conversion to kg
@@ -80,17 +76,6 @@ public class CalcActivity extends Activity implements View.OnClickListener {
             female_calc(ageNum, W, cm);
 
         }
-
-
-
-
-
-
-
-
-
-
-
     }
 
     private void male_calc(int ageNum, double w, double cm)
@@ -105,13 +90,6 @@ public class CalcActivity extends Activity implements View.OnClickListener {
         b.putString("key2",m_gender);
         maleIntent.putExtras(b);
         startActivity(maleIntent);
-
-
-
-       /* Toast t;
-        t = Toast.makeText(this, "Male "+m_result, Toast.LENGTH_LONG);
-        t.show(); */
-
     }
 
     private void female_calc(int ageNum, double w, double cm)
@@ -127,12 +105,6 @@ public class CalcActivity extends Activity implements View.OnClickListener {
         b.putString("key2",f_gender);
         femaleIntent.putExtras(b);
         startActivity(femaleIntent);
-
-       /* Toast t;
-        t = Toast.makeText(this, "Female "+f_result,Toast.LENGTH_LONG);
-        t.show();
-        */
-
     }
 
 

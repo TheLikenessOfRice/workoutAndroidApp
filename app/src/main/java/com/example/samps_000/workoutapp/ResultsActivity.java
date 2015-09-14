@@ -60,10 +60,6 @@ public class ResultsActivity extends Activity {
              calc_gain1 = beto_result2 + 900;
              calc_gain2 = beto_result2 + 1100;
 
-            /*Toast t;
-            t = Toast.makeText(this, "Male",Toast.LENGTH_LONG);  //Test Toast
-            t.show(); */
-
             lose1.setText(Integer.toString(calc_lose1)+" Cal.");
             lose2.setText(Integer.toString(calc_lose2)+" Cal.");
 
@@ -84,9 +80,6 @@ public class ResultsActivity extends Activity {
              calc_gain1 = beto_result2 + 800;
              calc_gain2 = beto_result2 + 1000;
 
-           /* Toast t;
-            t = Toast.makeText(this, "Female",Toast.LENGTH_LONG);  // test toast
-            t.show(); */
 
             lose1.setText(Integer.toString(calc_lose1)+" Cal.");
             lose2.setText(Integer.toString(calc_lose2)+" Cal.");

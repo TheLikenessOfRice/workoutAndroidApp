@@ -158,13 +158,9 @@ public class MainActivity extends ListActivity {
 
                     Log.d("results", "made it here10");
                     result = sb.toString();
-                } catch (
-                        Exception e
-                        )
-
-                {
-                    // Oops
-                } finally
+                } catch (Exception e)
+                    {Log.e("results", "exception", e);}
+                finally
 
                 {
                     try {
@@ -172,16 +168,16 @@ public class MainActivity extends ListActivity {
                         Log.d("results", "made it here11");
                         if (inputStream != null) inputStream.close();
                     } catch (Exception squish) {
+                        Log.e("results", "exception", squish);
                     }
 
                 }
 
                 try {
-                    //Log.d("results", "results: " + result);
                     jObject = new JSONObject(result);
                     JSONObject list = jObject.getJSONObject("list");
                     foods = list.getJSONArray("item");
-                    //Log.d("results", "here" + jObject.toString(2));
+
                     for (int i = 0; i < foods.length(); i++) {
                         JSONObject item = foods.getJSONObject(i);
                         String group = item.getString("group");
@@ -201,17 +197,12 @@ public class MainActivity extends ListActivity {
                     Log.e("results", "exception", e);
 
                 }
-                Log.d("results", "made it here12");
                 if (foods == null) {
                     Log.d("results", "foods is null");
                 }
             } else {
                 internetConnection = false;
             }
-
-
-            //ListAdapter searchDisplay = new CustomAdapter(this, foodItems);
-            //searchListView.setAdapter(searchDisplay);
             return null;
         }
 

@@ -8,12 +8,9 @@ import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -24,12 +21,10 @@ import org.apache.http.params.BasicHttpParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 
 
 public class FoodInfo extends Activity{
@@ -133,26 +128,23 @@ public class FoodInfo extends Activity{
 
                     Log.d("results", "made it here10");
                     result = sb.toString();
-                } catch (
-                        Exception e
-                        )
-
+                } catch (Exception e)
                 {
-                    // Oops
-                } finally
-
+                    Log.e("results", "exception", e);
+                }
+                finally
                 {
                     try {
 
                         Log.d("results", "made it here11");
                         if (inputStream != null) inputStream.close();
                     } catch (Exception squish) {
+                        Log.e("results", "exception", squish);
                     }
 
                 }
 
                 try {
-                    //Log.d("results", "results: " + result);
                     jObject = new JSONObject(result);
                     JSONObject list = jObject.getJSONObject("report");
                     nutrients = list.getJSONArray("foods");
@@ -180,56 +172,46 @@ public class FoodInfo extends Activity{
                                 case 203:
                                     protein = itemObj.getString("value");
                                     protein += itemObj.getString("unit");
-                                    //protein = "Protein: " + protein;
                                     break;
 
                                 case 204:
                                     fat = itemObj.getString("value");
                                     fat += itemObj.getString("unit");
-                                    //fat = "Fat: " + fat;
                                     break;
 
                                 case 205:
                                     carbs = itemObj.getString("value");
                                     carbs += itemObj.getString("unit");
-                                    //carbs = "Carbohydrates: " + carbs;
                                     break;
 
                                 case 301:
                                     calcium = itemObj.getString("value");
                                     calcium += itemObj.getString("unit");
-                                    //calcium = "Calcium: " + calcium;
                                     break;
 
                                 case 306:
                                     potassium = itemObj.getString("value");
                                     potassium += itemObj.getString("unit");
-                                    //potassium = "Potassium: " + potassium;
                                     break;
 
                                 case 269:
                                     Log.d("results", "made to sugars");
                                     sugars = itemObj.getString("value");
                                     sugars += itemObj.getString("unit");
-                                    //sugars = "Sugars: " + sugars;
                                     break;
 
                                 case 307:
                                     sodium = itemObj.getString("value");
                                     sodium += itemObj.getString("unit");
-                                    //sodium = "Sodium: " + sodium;
                                     break;
 
                                 case 208:
                                     calories = itemObj.getString("value");
-                                    calories += itemObj.getString("unit");
-                                    //calories = "Calories: " + calories;
                                     break;
 
                                 case 291:
                                     fiber = itemObj.getString("value");
                                     fiber += itemObj.getString("unit");
-                                    //fiber = "Fiber: " + fiber;
                                     break;
 
                                 default:
