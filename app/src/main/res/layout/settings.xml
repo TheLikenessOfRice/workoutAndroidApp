@@ -6,46 +6,55 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Change Theme"
-        android:id="@+id/changeTheme"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Developers"
+        android:id="@+id/textView11"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="29dp"
-        android:layout_marginStart="29dp"
+        android:layout_marginLeft="39dp"
+        android:layout_marginStart="39dp"
         android:layout_marginTop="29dp" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/saveButton"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:onClick="saveClicked" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bryce Sampson"
+        android:id="@+id/textView14"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11"
+        android:layout_margin="10dp" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Dark"
-        android:id="@+id/darkButton"
-        android:layout_alignTop="@+id/changeTheme"
-        android:layout_toRightOf="@+id/changeTheme"
-        android:layout_toEndOf="@+id/changeTheme"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:onClick="darkButtonClicked" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Humberto &quot;Beto&quot; Hernandez"
+        android:id="@+id/textView15"
+        android:layout_below="@+id/textView14"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Light"
-        android:id="@+id/lightButton"
-        android:layout_alignTop="@+id/darkButton"
-        android:layout_toRightOf="@+id/darkButton"
-        android:layout_toEndOf="@+id/darkButton"
-        android:layout_marginLeft="20dp"
-        android:onClick="lightButtonClicked" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Food Info Source"
+        android:id="@+id/textView16"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="U.S. Department of Agriculture, Agricultural Research Service. 2014. USDA National Nutrient Database for Standard Reference, Release . Nutrient Data Laboratory Home Page, http://www.ars.usda.gov/nutrientdata "
+        android:id="@+id/textView17"
+        android:layout_below="@+id/textView16"
+        android:layout_alignLeft="@+id/textView16"
+        android:layout_alignStart="@+id/textView16"
+        android:layout_margin="10dp" />
 </RelativeLayout>

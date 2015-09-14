@@ -1,8 +1,8 @@
 package com.example.samps_000.workoutapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 
 
-public class CalcActivity extends ActionBarActivity implements View.OnClickListener {
+public class CalcActivity extends Activity implements View.OnClickListener {
 
     private Button calc;
     private EditText age, weight, height1, height2;

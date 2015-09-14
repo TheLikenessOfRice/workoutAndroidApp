@@ -1,17 +1,12 @@
 package com.example.samps_000.workoutapp;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.view.Window;
 
 
-public class ResultsActivity extends ActionBarActivity {
+public class ResultsActivity extends Activity {
 
 
     private TextView lose1, lose2, main1, main2, gain1,gain2;

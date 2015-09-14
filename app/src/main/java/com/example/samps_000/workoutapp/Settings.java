@@ -10,7 +10,7 @@ import android.widget.Spinner;
 
 public class Settings extends Activity{
 
-    Spinner themes;
+    //Spinner themes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class Settings extends Activity{
         StartPage newStart = new StartPage();
         newStart.changeTheme("light");
     }
-    */
     public void saveClicked(View view){
         finish();
     }
+    */
 }
