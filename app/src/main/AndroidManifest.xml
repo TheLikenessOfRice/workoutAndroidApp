@@ -14,7 +14,7 @@
         android:largeHeap="true">
         <activity
             android:name=".StartPage"
-            android:label="startPage">
+            android:label="CalCalc">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
