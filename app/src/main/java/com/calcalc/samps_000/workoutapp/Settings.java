@@ -1,12 +1,7 @@
-package com.example.samps_000.workoutapp;
+package com.calcalc.samps_000.workoutapp;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 public class Settings extends Activity{
 
