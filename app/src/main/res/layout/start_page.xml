@@ -19,7 +19,7 @@
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
             android:id="@+id/topRow"
-            android:background="@drawable/table"
+            android:background="@drawable/table_button"
             android:layout_gravity="center"
             android:onClick="calculateClicked">
 

@@ -11,6 +11,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
@@ -25,6 +29,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 
 public class FoodInfo extends Activity{
@@ -66,7 +71,20 @@ public class FoodInfo extends Activity{
         String potassium;
         String sodium;
         String fiber;
+        String servingWeight;
+        float sugarsG;
+        float proteinG;
+        float carbsG;
+        float caloriesG;
+        float potassiumG;
+        float fatG;
+        float calciumG;
+        float sodiumG;
+        float fiberG;
+        float init_serv_g;
         boolean isEmpty = false;
+        Spinner servSizeDropDown = (Spinner) findViewById(R.id.measurementDropDown);
+        ArrayList<String> measurements = new ArrayList<>();
 
 
         private boolean isNetworkAvailable() {
@@ -153,12 +171,24 @@ public class FoodInfo extends Activity{
 
 
                         Log.d("results", "Len: " + String.valueOf(nutrients.length()));
-
+//ERROR HERE
                         JSONObject item = nutrients.getJSONObject(0);
 
                         servingSize = item.getString("measure");
-                        servingSize = "Nutrients per " + servingSize;
                         name = item.getString("name");
+                        Log.d("results", "made it hereb");
+                        servingWeight = item.getString("weight");
+                        Log.d("results", "made it here: " + servingWeight);
+                        init_serv_g = Float.parseFloat(servingWeight);
+                        servingWeight += " grams";
+                        Log.d("results", "made it herec");
+
+                        Log.d("results", "made it herea");
+
+                        measurements.add(servingSize);
+                        measurements.add(servingWeight);
+                        measurements.add("100 grams");
+
 
 
                         JSONArray foodArray = item.getJSONArray("nutrients");
@@ -274,39 +304,131 @@ public class FoodInfo extends Activity{
                 AlertDialog alert = builder.create();
                 alert.show();
             }
+
+            ArrayAdapter<String> adapter;
+            adapter = new ArrayAdapter<String>(FoodInfo.this,
+                    android.R.layout.simple_spinner_item, measurements);
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            servSizeDropDown.setAdapter(adapter);
             TextView foodName = (TextView) findViewById(R.id.foodName);
             TextView serving = (TextView) findViewById(R.id.servingSize);
-            TextView sugar = (TextView) findViewById(R.id.sugar);
 
-            TextView proteinText = (TextView) findViewById(R.id.protein);
+            final TextView sugarText = (TextView) findViewById(R.id.sugar);
 
-            TextView carbText = (TextView) findViewById(R.id.carbs);
+            final TextView proteinText = (TextView) findViewById(R.id.protein);
 
-            TextView caloriesText = (TextView) findViewById(R.id.calories);
+            final TextView carbText = (TextView) findViewById(R.id.carbs);
 
-            TextView potassiumText = (TextView) findViewById(R.id.potassium);
+            final TextView caloriesText = (TextView) findViewById(R.id.calories);
 
-            TextView fatsText = (TextView) findViewById(R.id.fats);
+            final TextView potassiumText = (TextView) findViewById(R.id.potassium);
 
-            TextView calciumText = (TextView) findViewById(R.id.calcium);
+            final TextView fatsText = (TextView) findViewById(R.id.fats);
 
-            TextView sodiumText = (TextView) findViewById(R.id.sodium);
+            final TextView calciumText = (TextView) findViewById(R.id.calcium);
 
-            TextView fiberText = (TextView) findViewById(R.id.fiber);
+            final TextView sodiumText = (TextView) findViewById(R.id.sodium);
+
+            final TextView fiberText = (TextView) findViewById(R.id.fiber);
 
             foodName.setText(name);
             foodName.setMovementMethod(new ScrollingMovementMethod());
 
-            serving.setText(servingSize);
-            sugar.setText(sugars);
-            proteinText.setText(protein);
-            carbText.setText(carbs);
-            caloriesText.setText(calories);
-            potassiumText.setText(potassium);
-            fatsText.setText(fat);
-            calciumText.setText(calcium);
-            sodiumText.setText(sodium);
-            fiberText.setText(fiber);
+            final TextView[] nutTexts = {sugarText, proteinText, carbText, fatsText, fiberText, potassiumText, sodiumText, calciumText};
+            final Float[] GramsG = {sugarsG, proteinG, carbsG, fatG, fiberG};
+            final String[] Grams = {sugars, protein, carbs, fat, fiber};
+            final Float[] MG = {potassiumG, sodiumG, calciumG};
+            final String[] MGs = {potassium, sodium, calcium};
+
+            //set inital nutrient values
+            for(int i = 0; i < nutTexts.length; i++){
+               if(i < Grams.length) {
+                   nutTexts[i].setText(Grams[i]);
+               }
+               else{
+                   nutTexts[i].setText(MGs[i-5]);
+               }
+            }
+
+            servSizeDropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    int item = servSizeDropDown.getSelectedItemPosition();
+
+                    //convert to 100 grams
+                    if (item == 2) {
+
+                        for(int i = 0; i < Grams.length; i++){
+                            Log.d("results", Integer.toString(i));
+
+                            if(!"--".equals(Grams[i].substring(0, Grams[i].length()-1))) {
+                                GramsG[i] = (Float.parseFloat(Grams[i].substring(0, Grams[i].length() - 1)) / init_serv_g) * 100;
+                            }
+
+
+                            if(i < MG.length) {
+                                if (!"--".equals(MGs[i].substring(0, MGs[i].length() - 1))) {
+
+                                    MG[i] = (Float.parseFloat(MGs[i].substring(0, MGs[i].length() - 2)) / init_serv_g) * 100;
+                                }
+                            }
+
+                            Log.d("results", Grams[i].toString());
+                        }
+                        caloriesG = (Float.parseFloat(calories) / init_serv_g) * 100;
+
+                        //set text to new values
+                        for(int i = 0; i < nutTexts.length;i++){
+
+                            if(i < GramsG.length) {
+                                if(String.valueOf(GramsG[i]).equals("0.0")){
+                                    nutTexts[i].setText("--g");
+                                }
+                                else {
+                                    String temp = String.valueOf(GramsG[i]);
+                                    int decimal = temp.indexOf('.');
+                                    nutTexts[i].setText(temp.substring(0, decimal+2) + "g");
+                                }
+                            }
+                            else{
+                                if(String.valueOf(MG[i-5]).equals("0.0")){
+                                    nutTexts[i].setText("--mg");
+                                }
+                                else {
+                                    String temp = String.valueOf(MG[i - 5]);
+                                    int decimal = temp.indexOf('.');
+                                    nutTexts[i].setText(temp.substring(0,decimal+3) + "mg");
+                                }
+                            }
+                        }
+                        String temp = String.valueOf(caloriesG);
+                        int decimal = temp.indexOf('.');
+                        caloriesText.setText(temp.substring(0, decimal+3));
+                    }
+
+                    //reset to original nutrient values
+                    else if(item == 0 || item == 1){
+                        for(int i = 0; i < nutTexts.length; i++){
+                            if(i < Grams.length) {
+                                nutTexts[i].setText(Grams[i]);
+                            }
+                            else{
+                                nutTexts[i].setText(MGs[i-5]);
+                            }
+                        }
+                        caloriesText.setText(calories);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
         }
     }
 

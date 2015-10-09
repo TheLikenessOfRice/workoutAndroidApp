@@ -26,19 +26,29 @@
             android:layout_marginBottom="10dp" />
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:id="@+id/servingSize"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="50dp"
+            android:text="Nutrients per"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/measurementDropDown"
+            android:layout_toRightOf="@+id/servingSize"
+            android:layout_alignTop="@+id/servingSize"
+            android:layout_alignBottom="@+id/servingSize" />
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="75dp"
             android:id="@+id/sugarTable"
             android:background="@drawable/border"
-                >
+            android:layout_below="@+id/servingSize">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,7 +74,8 @@
             android:layout_alignParentStart="false"
             android:layout_alignParentTop="false"
             android:background="@drawable/border"
-            android:layout_marginTop="100dp">
+            android:layout_below="@+id/sugarTable"
+            android:id="@+id/proteinTable">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,7 +97,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/border"
-            android:layout_marginTop="125dp">
+            android:id="@+id/carbsTable"
+            android:layout_below="@+id/proteinTable">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +122,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/border"
-            android:layout_marginTop="150dp">
+            android:id="@+id/fatsTable"
+            android:layout_below="@+id/carbsTable">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -134,55 +147,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/border"
-            android:layout_marginTop="175dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Potassium:"
-                android:id="@+id/textView6" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/potassium"
-                android:gravity="right"
-                android:layout_below="@+id/fats"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/border"
-            android:layout_marginTop="200dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Sodium:"
-                android:id="@+id/textView7" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/sodium"
-                android:gravity="right"
-                android:layout_below="@+id/potassium"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/border"
-            android:layout_marginTop="225dp">
+            android:id="@+id/fiberTable"
+            android:layout_below="@+id/fatsTable">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -206,7 +172,58 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/border"
-            android:layout_marginTop="250dp">
+            android:id="@+id/pottasTable"
+            android:layout_below="@+id/fiberTable">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Potassium:"
+                android:id="@+id/textView6" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/potassium"
+                android:gravity="right"
+                android:layout_below="@+id/fats"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:id="@+id/sodiumTable"
+            android:layout_below="@+id/pottasTable">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Sodium:"
+                android:id="@+id/textView7" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/sodium"
+                android:gravity="right"
+                android:layout_below="@+id/potassium"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/border"
+            android:id="@+id/calciumTable"
+            android:layout_below="@+id/sodiumTable">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -230,7 +247,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/border"
-            android:layout_marginTop="275dp">
+            android:id="@+id/caloriesTable"
+            android:layout_below="@+id/calciumTable">
 
             <TextView
                 android:layout_width="wrap_content"
