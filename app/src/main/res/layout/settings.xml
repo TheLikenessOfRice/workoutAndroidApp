@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/settings">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Developers"
+        android:text="Developers:"
         android:id="@+id/textView11"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -41,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Food Info Source"
+        android:text="Food Info Source:"
         android:id="@+id/textView16"
         android:layout_centerVertical="true"
         android:layout_alignLeft="@+id/textView11"
@@ -57,4 +58,24 @@
         android:layout_alignLeft="@+id/textView16"
         android:layout_alignStart="@+id/textView16"
         android:layout_margin="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Macros Formula Source:"
+        android:id="@+id/textView18"
+        android:layout_below="@+id/textView17"
+        android:layout_alignLeft="@+id/textView16"
+        android:layout_alignStart="@+id/textView16" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="http://www.bodybuilding.com/fun/calorie-know-how-get-equation-right-to-get-results.htm"
+        android:id="@+id/textView19"
+        android:layout_below="@+id/textView18"
+        android:layout_alignLeft="@+id/textView17"
+        android:layout_alignStart="@+id/textView17" />
 </RelativeLayout>

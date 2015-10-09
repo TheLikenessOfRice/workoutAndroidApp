@@ -1,4 +1,4 @@
-package com.example.samps_000.workoutapp;
+package com.calcalc.samps_000.workoutapp;
 
 import android.app.Activity;
 import android.content.Context;
@@ -28,6 +28,7 @@ public class CalcActivity extends Activity implements View.OnClickListener {
     }
 
     private void init() {
+        int start = 0;
         calc = (Button) findViewById(R.id.calculate);
         age = (EditText) findViewById(R.id.ageInput);
         weight = (EditText) findViewById(R.id.weightInput);

@@ -1,0 +1,6 @@
+1) Make this app in IOS
+2)Get a better search with database
+3)Be able to choose portion size
+4)Be able to add certain food to a log by one button
+5)Add daily log to main page as third option
+6) Be able to show totals of carbs, calories, protein, etc

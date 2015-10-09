@@ -1,4 +1,4 @@
-package com.example.samps_000.workoutapp.dummy;
+package com.calcalc.samps_000.workoutapp.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

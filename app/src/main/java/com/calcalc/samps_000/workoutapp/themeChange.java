@@ -1,4 +1,4 @@
-package com.example.samps_000.workoutapp;
+package com.calcalc.samps_000.workoutapp;
 
 import android.app.Activity;
 import android.content.Intent;

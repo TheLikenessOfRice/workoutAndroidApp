@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.samps_000.workoutapp" >
+    package="com.calcalc.samps_000.workoutapp" >
 
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,8 +13,8 @@
         android:theme="@style/DarkTheme"
         android:largeHeap="true">
         <activity
-            android:name=".StartPage"
-            android:label="startPage">
+            android:name="com.calcalc.samps_000.workoutapp.StartPage"
+            android:label="CalCalc">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -22,29 +22,28 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
             android:windowSoftInputMode="stateVisible|adjustResize"
-            >
+            android:name="com.calcalc.samps_000.workoutapp.MainActivity"
+            android:label="@string/app_name" >
         </activity>
 
         <activity
-            android:name=".CalcActivity"
+            android:name="com.calcalc.samps_000.workoutapp.CalcActivity"
             android:label="CalcActivity">
         </activity>
 
         <activity
-            android:name=".ResultsActivity"
+            android:name="com.calcalc.samps_000.workoutapp.ResultsActivity"
             android:label="ResultsActivity">
         </activity>
 
         <activity
-            android:name=".Settings"
+            android:name="com.calcalc.samps_000.workoutapp.Settings"
             android:label="settings">
         </activity>
 
         <activity
-            android:name=".FoodInfo"
+            android:name="com.calcalc.samps_000.workoutapp.FoodInfo"
             android:label="@string/title_activity_food_info" >
         </activity>
     </application>
