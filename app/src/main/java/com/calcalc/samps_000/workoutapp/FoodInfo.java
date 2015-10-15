@@ -1,13 +1,16 @@
 package com.calcalc.samps_000.workoutapp;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -16,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -30,12 +34,18 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class FoodInfo extends Activity{
 
     String foodNom;
     String api = "http://api.nal.usda.gov/ndb/nutrients/?format=json&api_key=vdMQ5GuTHv1uDeZiOiu7kAIpTfIP9u7J35J5U6R9&ndbno=0000&nutrients=205&nutrients=204&nutrients=208&nutrients=269&nutrients=203&nutrients=291&nutrients=301&nutrients=307&nutrients=306";
+
+    HashMap<String, String> log_items;
+    ArrayList<HashMap<String, String>> full_log;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -430,6 +440,50 @@ public class FoodInfo extends Activity{
 
 
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public void logAddClick(View v){
+        //Set<String> foodItem = new HashSet<>();
+
+        TextView titleText = (TextView) findViewById(R.id.foodName);
+        TextView calories = (TextView) findViewById(R.id.calories);
+
+        Log.d("addLog", "TT: " + titleText.getText().toString());
+        Log.d("addLog", "C: " + calories.getText().toString());
+        Log.d("addLog", "FN: " + foodNom);
+
+        //foodItem.add(titleText.getText().toString());
+        //foodItem.add(calories.getText().toString());
+        //foodItem.add(foodNom);
+
+        //log_items.put("name", (String) titleText.getText());
+        //log_items.put("calories", (String) calories.getText());
+        SharedPreferences prefs = getSharedPreferences("logData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        int i = 1;
+        while(null != prefs.getString(String.valueOf(i) + " title", null)) {
+            /*editor.remove(String.valueOf(i) + " title");
+            editor.remove(String.valueOf(i) + " cal");
+            editor.remove(String.valueOf(i) + " no");
+            */
+            i+=1;
+        }
+        editor.putString(String.valueOf(i) + " title", titleText.getText().toString());
+        editor.putString(String.valueOf(i) + " cal", calories.getText().toString());
+        editor.putString(String.valueOf(i) + " no", foodNom);
+        editor.putString(String.valueOf(i) + " keyNum", String.valueOf(i)) ;
+
+        editor.apply();
+        Toast.makeText(FoodInfo.this, "I: " + i + " TT: " + titleText.getText().toString(), Toast.LENGTH_LONG).show();
+
+        /*
+        try{
+            full_log = (ArrayList<HashMap<String, String>>) ObjectSerializer.deserialize(prefs.getString)
+        }
+        */
+
+
     }
 
 

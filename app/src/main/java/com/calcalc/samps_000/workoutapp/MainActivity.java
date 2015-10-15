@@ -152,16 +152,16 @@ public class MainActivity extends ListActivity {
                     Log.d("results", "made it here10");
                     result = sb.toString();
                 } catch (Exception e)
-                    {Log.e("results", "exception", e);}
+                    {
+                        Log.e("results", "exception: " +  e);
+                    }
                 finally
-
                 {
                     try {
-
                         Log.d("results", "made it here11");
                         if (inputStream != null) inputStream.close();
                     } catch (Exception squish) {
-                        Log.e("results", "exception", squish);
+                        Log.e("results", "exception: " + squish);
                     }
 
                 }

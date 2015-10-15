@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Macros Formula Source:"
-        android:id="@+id/textView18"
+        android:id="@+id/logFoodTitle"
         android:layout_below="@+id/textView17"
         android:layout_alignLeft="@+id/textView16"
         android:layout_alignStart="@+id/textView16" />
@@ -75,7 +75,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="http://www.bodybuilding.com/fun/calorie-know-how-get-equation-right-to-get-results.htm"
         android:id="@+id/textView19"
-        android:layout_below="@+id/textView18"
+        android:layout_below="@+id/logFoodTitle"
         android:layout_alignLeft="@+id/textView17"
         android:layout_alignStart="@+id/textView17" />
 </RelativeLayout>

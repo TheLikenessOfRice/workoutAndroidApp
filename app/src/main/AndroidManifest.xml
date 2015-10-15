@@ -46,6 +46,11 @@
             android:name="com.calcalc.samps_000.workoutapp.FoodInfo"
             android:label="@string/title_activity_food_info" >
         </activity>
+
+        <activity
+            android:name="com.calcalc.samps_000.workoutapp.FoodLog"
+            android:label="FoodLog" >
+        </activity>
     </application>
 
 </manifest>
