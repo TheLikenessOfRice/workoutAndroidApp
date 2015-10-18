@@ -24,7 +24,7 @@ public class StartPage extends Activity{
         ImageView menu_image = (ImageView) findViewById(R.id.menu_image);
         menu_image.getLayoutParams().height = (int) (dpHeight/3);
 
-        SharedPreferences prefs = getSharedPreferences("logData", Context.MODE_PRIVATE);
+        /*SharedPreferences prefs = getSharedPreferences("logData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         int i = 1;
         while(null != prefs.getString(String.valueOf(i) + " title", null)) {
@@ -34,6 +34,7 @@ public class StartPage extends Activity{
             i+=1;
         }
         editor.apply();
+        */
 
     }
 
