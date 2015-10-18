@@ -14,32 +14,40 @@
 
         <TableRow
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:paddingTop="0dp"
             android:paddingBottom="0dp"
             android:background="@drawable/table_button"
             android:layout_gravity="center"
             android:id="@+id/searchRow"
-            android:onClick="foodSearchClick">
+            android:onClick="foodSearchClick"
+            >
 
             <ImageView
                 android:layout_width="100dp"
-                android:layout_height="60dp"
+                android:layout_height="100dp"
                 android:id="@+id/magnify_glass"
                 android:src="@drawable/magnify_glass_small"
-                android:layout_marginRight="0dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/glass" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="@string/search_foods"
-                android:id="@+id/textView2"
-                android:layout_gravity="center_vertical"
-                android:layout_centerVertical="true" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="@string/search_foods"
+                    android:id="@+id/textView2"
+                    android:layout_gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dp" />
+
+            </RelativeLayout>
 
         </TableRow>
 
@@ -73,7 +81,9 @@
                     android:text="@string/person_info"
                     android:id="@+id/textView"
                     android:layout_gravity="center_vertical"
-                    android:layout_centerVertical="true" />
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_alignParentRight="true" />
 
             </RelativeLayout>
 
@@ -81,16 +91,18 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:background="@drawable/table_button"
             android:onClick="logRowClick"
-            android:id="@+id/logRow">
+            android:id="@+id/logRow"
+            android:layout_weight="1">
 
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="150dp"
                 android:id="@+id/menu_image"
-                android:src="@drawable/menu_icon" />
+                android:src="@drawable/menu_icon"
+                android:layout_gravity="center_vertical" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -103,22 +115,46 @@
                     android:text="Log"
                     android:id="@+id/textView18"
                     android:layout_gravity="center_vertical"
-                    android:layout_centerVertical="true" />
-
-                <Button
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/settingButton"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginRight="30dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/gear_lighter"
-                    android:onClick="settingsClicked" />
+                    android:layout_alignParentRight="true" />
+
             </RelativeLayout>
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/table_button"
+            android:onClick="profileRowClick"
+            android:id="@+id/tableRow"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/silhouette"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Profile"
+                    android:id="@+id/textView22"
+                    android:layout_gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
         </TableRow>
 
     </TableLayout>

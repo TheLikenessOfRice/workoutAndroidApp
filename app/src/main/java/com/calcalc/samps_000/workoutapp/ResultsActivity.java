@@ -1,9 +1,19 @@
 package com.calcalc.samps_000.workoutapp;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 
 public class ResultsActivity extends Activity {
@@ -92,8 +102,54 @@ public class ResultsActivity extends Activity {
             gain2.setText(Integer.toString(calc_gain2) + " Cal.");
         }
 
+        Spinner goals = (Spinner) findViewById(R.id.goalSpinner);
+        ArrayList<String> limits = new ArrayList<>();
+        limits.add("Lose Weight");
+        limits.add("Maintain Weight");
+        limits.add("Gain Weight");
 
-        
+        ArrayAdapter<String> adapter;
+        adapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_custom, limits);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        goals.setAdapter(adapter);
+
+    }
+
+    public void trackButtonClick(View view){
+
+        Spinner goals = (Spinner) findViewById(R.id.goalSpinner);
+        String goal = goals.getSelectedItem().toString();
+
+        SharedPreferences prefs = getSharedPreferences("logData", MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+
+        if(goal == "Lose Weight"){
+            TextView cal = (TextView) findViewById(R.id.lose_input2);
+            String calories = cal.getText().toString();
+            calories = calories.substring(0, calories.length()-1);
+            edit.putString("track", calories);
+        }
+        else if(goal == "Maintain Weight"){
+            TextView cal = (TextView) findViewById(R.id.main_input2);
+            String calories = cal.getText().toString();
+            calories = calories.substring(0, calories.length()-1);
+            edit.putString("track", calories);
+        }
+        else
+        {
+            TextView cal = (TextView) findViewById(R.id.gain_input2);
+            String calories = cal.getText().toString();
+            calories = calories.substring(0, calories.length()-1);
+            edit.putString("track", calories);
+        }
+
+        edit.commit();
+        Log.d("goal", goal);
+        Toast.makeText(this, "Current Goal: " + goal, Toast.LENGTH_LONG).show();
+
     }
 
 

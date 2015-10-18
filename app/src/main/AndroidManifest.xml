@@ -51,6 +51,11 @@
             android:name="com.calcalc.samps_000.workoutapp.FoodLog"
             android:label="FoodLog" >
         </activity>
+
+        <activity
+            android:name="com.calcalc.samps_000.workoutapp.Profile"
+            android:label="Profile">
+        </activity>
     </application>
 
 </manifest>

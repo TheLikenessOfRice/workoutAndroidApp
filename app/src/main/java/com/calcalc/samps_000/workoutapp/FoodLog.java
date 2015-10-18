@@ -17,6 +17,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,7 +68,14 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
         adb.setNegativeButton("Cancel", null);
         adb.setPositiveButton("Ok", new AlertDialog.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                SharedPreferences.Editor remove = FoodLog.this.getSharedPreferences("logData", Context.MODE_PRIVATE).edit();
+                SharedPreferences share = FoodLog.this.getSharedPreferences("logData", Context.MODE_PRIVATE);
+                SharedPreferences.Editor remove = share.edit();
+                String cal = share.getString(key + " cal", null);
+                TextView curCal = (TextView) findViewById(R.id.curGoal);
+                String totalCal = curCal.getText().toString();
+
+                curCal.setText(String.valueOf((Integer.parseInt(totalCal)-Integer.parseInt(cal))));
+
                 remove.remove(key + " title");
                 remove.remove(key + " cal");
                 remove.remove(key + " no");
@@ -83,6 +93,13 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
         SharedPreferences prefs = this.getSharedPreferences("logData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
+        String calGoal = prefs.getString("track", null);
+        TextView goal = (TextView) findViewById(R.id.calorieGoal);
+        goal.setText(calGoal);
+
+        TextView curGoal = (TextView) findViewById(R.id.curGoal);
+        int totalCal = 0;
+
         int i = 1;
         while(null != prefs.getString(String.valueOf(i) + " title", null)){
             HashMap<String, String>  item = new HashMap<String, String>();
@@ -94,6 +111,9 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
             item.put("cal", cal);
             item.put("no", no);
             item.put("key", key);
+
+            totalCal += Integer.parseInt(cal);
+
             Log.d("saves", "T: " + title);
             Log.d("saves", "C: " + cal);
             Log.d("saves", "N: " + no);
@@ -102,6 +122,8 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
             i += 1;
 
         }
+
+        curGoal.setText(String.valueOf(totalCal));
 
         Log.d("saves", "here5");
 

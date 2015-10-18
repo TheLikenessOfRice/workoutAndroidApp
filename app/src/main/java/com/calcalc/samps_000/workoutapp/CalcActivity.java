@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,7 +39,32 @@ public class CalcActivity extends Activity implements View.OnClickListener {
         genderM = (CheckBox) findViewById(R.id.MaleBox);
         genderF = (CheckBox) findViewById(R.id.FemaleBox);
 
+
         calc.setOnClickListener(this);
+
+
+        genderM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(genderM.isChecked()){
+                    Log.d("check", "here");
+                    genderF.setChecked(false);
+                    genderF.setSelected(false);
+                }
+            }
+        });
+         genderF.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(genderF.isChecked()){
+                    Log.d("check", "here2");
+                    genderM.setChecked(false);
+                    genderM.setSelected(false);
+                }
+            }
+        });
+
+
 
     }
 
