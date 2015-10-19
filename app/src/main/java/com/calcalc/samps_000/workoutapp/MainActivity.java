@@ -47,6 +47,8 @@ public class MainActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EditText search = (EditText) findViewById(R.id.getFood);
+        search.requestFocus();
         Log.d("restart", "searchrestart");
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
