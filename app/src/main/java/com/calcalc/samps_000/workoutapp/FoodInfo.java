@@ -13,11 +13,14 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +40,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -47,11 +51,17 @@ public class FoodInfo extends Activity{
 
     HashMap<String, String> log_items;
     ArrayList<HashMap<String, String>> full_log;
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_info);
+
+        mDrawerList = (ListView) findViewById(R.id.navList);
+        addDrawerItem();
+        drawerListener();
 
         Bundle foodData = getIntent().getExtras();
         if(foodData == null)
@@ -478,5 +488,48 @@ public class FoodInfo extends Activity{
     public void menuButtonClick(View view){
         Intent i = new Intent(this, StartPage.class);
         startActivity(i);
+    }
+
+    private void drawerListener() {
+        Log.d("nav", "here");
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String activity = (String) parent.getItemAtPosition(position);
+                Log.d("nav", "S: " + activity);
+                if (activity.equals("Log")) {
+                    close();
+                    Intent i = new Intent(FoodInfo.this, FoodLog.class);
+                    startActivity(i);
+                } else if (activity.equals("Main")) {
+                    close();
+                    Intent i = new Intent(FoodInfo.this, StartPage.class);
+                    startActivity(i);
+                } else if (activity.equals("Profile")) {
+                    close();
+                    Intent i = new Intent(FoodInfo.this, Profile.class);
+                    startActivity(i);
+                } else if (activity.equals("Calculate")) {
+                    close();
+                    Intent i = new Intent(FoodInfo.this, CalcActivity.class);
+                    startActivity(i);
+                } else if (activity.equals("Search")) {
+                    close();
+                    Intent i = new Intent(FoodInfo.this, MainActivity.class);
+                    startActivity(i);
+                }
+            }
+        });
+    }
+
+    private void addDrawerItem(){
+        String[] options = {"Main","Search", "Log", "Profile", "Calculate"};
+        mAdapter = new NavAdapter(this, android.R.layout.simple_list_item_1, options, 1);
+        mDrawerList.setAdapter(mAdapter);
+    }
+
+    public void close(){
+        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 }

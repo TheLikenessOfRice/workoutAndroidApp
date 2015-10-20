@@ -11,7 +11,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -63,7 +65,7 @@ public class MainActivity extends ListActivity {
         addDrawerItem();
 
         Log.d("nav", "here2");
-        drawerListener();
+        NavAdapter.drawerListener(this, 1);
 
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
@@ -79,58 +81,13 @@ public class MainActivity extends ListActivity {
 
     }
 
-   public class navAdapter extends ArrayAdapter<String> {
-
-       private List<String> items;
-
-       public navAdapter(Context context, int resource, String[] objects) {
-           super(context, resource, objects);
-       }
-
-
-       @Override
-       public View getView(int position, View convertView, ViewGroup parent) {
-           View view = super.getView(position, convertView, parent);
-           if(position == 1) {
-               view.setBackgroundColor(Color.parseColor("#F0F0F0"));
-               ((TextView) view).setTextColor(Color.parseColor("#7d7d7d"));
-           }
-           return view;
-       }
-   }
-
-    private void drawerListener() {
-        Log.d("nav", "here");
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String activity = (String) parent.getItemAtPosition(position);
-                Log.d("nav", "S: " + activity);
-                if(activity.equals("Log")){
-                    Intent i = new Intent(MainActivity.this, FoodLog.class);
-                    startActivity(i);
-                }
-                else if(activity.equals("Main")){
-                    Intent i = new Intent(MainActivity.this, StartPage.class);
-                    startActivity(i);
-                }
-                else if(activity.equals("Profile")){
-                    Intent i = new Intent(MainActivity.this, Profile.class);
-                    startActivity(i);
-                }
-                else if(activity.equals("Calculate")){
-                    Intent i = new Intent(MainActivity.this, CalcActivity.class);
-                    startActivity(i);
-                }
-            }
-        });
-    }
-
     private void addDrawerItem(){
         String[] options = {"Main","Search", "Log", "Profile", "Calculate"};
-        mAdapter = new navAdapter(this, android.R.layout.simple_list_item_1, options);
+        mAdapter = new NavAdapter(this, android.R.layout.simple_list_item_1, options, 1);
         mDrawerList.setAdapter(mAdapter);
     }
+
+
 
     public void searchButtonClicked(View view) {
         api = "http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=r&max=25&offset=0&api_key=vdMQ5GuTHv1uDeZiOiu7kAIpTfIP9u7J35J5U6R9";
