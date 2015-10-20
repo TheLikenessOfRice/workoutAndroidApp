@@ -97,7 +97,7 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
         TextView goal = (TextView) findViewById(R.id.calorieGoal);
         goal.setText(calGoal);
 
-        TextView curGoal = (TextView) findViewById(R.id.curGoal);
+        TextView curCal = (TextView) findViewById(R.id.curGoal);
         int totalCal = 0;
 
         int i = 1;
@@ -123,7 +123,7 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
 
         }
 
-        curGoal.setText(String.valueOf(totalCal));
+        curCal.setText(String.valueOf(totalCal));
 
         Log.d("saves", "here5");
 
@@ -133,6 +133,4 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
         setListAdapter(adapter);
 
     }
-
-
 }

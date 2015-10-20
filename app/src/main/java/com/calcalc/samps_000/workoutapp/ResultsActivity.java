@@ -135,7 +135,7 @@ public class ResultsActivity extends Activity {
         else if(goal == "Maintain Weight"){
             TextView cal = (TextView) findViewById(R.id.main_input2);
             String calories = cal.getText().toString();
-            calories = calories.substring(0, calories.length()-1);
+            calories = calories.substring(0, calories.length()-5);
             edit.putString("track", calories);
         }
         else

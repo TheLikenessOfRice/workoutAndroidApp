@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class StartPage extends Activity{
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.d("testing", "start create");

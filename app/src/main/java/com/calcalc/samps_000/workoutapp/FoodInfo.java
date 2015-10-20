@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -444,7 +445,6 @@ public class FoodInfo extends Activity{
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void logAddClick(View v){
-        //Set<String> foodItem = new HashSet<>();
 
         TextView titleText = (TextView) findViewById(R.id.foodName);
         TextView calories = (TextView) findViewById(R.id.calories);
@@ -453,20 +453,11 @@ public class FoodInfo extends Activity{
         Log.d("addLog", "C: " + calories.getText().toString());
         Log.d("addLog", "FN: " + foodNom);
 
-        //foodItem.add(titleText.getText().toString());
-        //foodItem.add(calories.getText().toString());
-        //foodItem.add(foodNom);
-
-        //log_items.put("name", (String) titleText.getText());
-        //log_items.put("calories", (String) calories.getText());
         SharedPreferences prefs = getSharedPreferences("logData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
+
         int i = 1;
         while(null != prefs.getString(String.valueOf(i) + " title", null)) {
-            /*editor.remove(String.valueOf(i) + " title");
-            editor.remove(String.valueOf(i) + " cal");
-            editor.remove(String.valueOf(i) + " no");
-            */
             i+=1;
         }
         editor.putString(String.valueOf(i) + " title", titleText.getText().toString());
@@ -475,17 +466,17 @@ public class FoodInfo extends Activity{
         editor.putString(String.valueOf(i) + " keyNum", String.valueOf(i)) ;
 
         editor.apply();
-        Toast.makeText(FoodInfo.this, "I: " + i + " TT: " + titleText.getText().toString(), Toast.LENGTH_LONG).show();
-
-        /*
-        try{
-            full_log = (ArrayList<HashMap<String, String>>) ObjectSerializer.deserialize(prefs.getString)
-        }
-        */
-
-
+        Toast.makeText(FoodInfo.this, "Added to Log!", Toast.LENGTH_LONG).show();
     }
 
 
+    public void goToLogClick(View view){
+        Intent i = new Intent(this, FoodLog.class);
+        startActivity(i);
+    }
 
+    public void menuButtonClick(View view){
+        Intent i = new Intent(this, StartPage.class);
+        startActivity(i);
+    }
 }

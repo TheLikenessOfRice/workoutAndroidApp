@@ -6,18 +6,22 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,6 +37,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class MainActivity extends ListActivity {
@@ -42,6 +48,8 @@ public class MainActivity extends ListActivity {
     JSONArray foods;
     JSONObject jObject;
     String api = "http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=r&max=25&offset=0&api_key=vdMQ5GuTHv1uDeZiOiu7kAIpTfIP9u7J35J5U6R9";
+    private ListView mDrawerList;
+    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,13 @@ public class MainActivity extends ListActivity {
         EditText search = (EditText) findViewById(R.id.getFood);
         search.requestFocus();
         Log.d("restart", "searchrestart");
+
+        mDrawerList = (ListView) findViewById(R.id.navList);
+        addDrawerItem();
+
+        Log.d("nav", "here2");
+        drawerListener();
+
         ListView lv = getListView();
         lv.setTextFilterEnabled(true);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -62,6 +77,59 @@ public class MainActivity extends ListActivity {
             }
         });
 
+    }
+
+   public class navAdapter extends ArrayAdapter<String> {
+
+       private List<String> items;
+
+       public navAdapter(Context context, int resource, String[] objects) {
+           super(context, resource, objects);
+       }
+
+
+       @Override
+       public View getView(int position, View convertView, ViewGroup parent) {
+           View view = super.getView(position, convertView, parent);
+           if(position == 1) {
+               view.setBackgroundColor(Color.parseColor("#F0F0F0"));
+               ((TextView) view).setTextColor(Color.parseColor("#7d7d7d"));
+           }
+           return view;
+       }
+   }
+
+    private void drawerListener() {
+        Log.d("nav", "here");
+        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String activity = (String) parent.getItemAtPosition(position);
+                Log.d("nav", "S: " + activity);
+                if(activity.equals("Log")){
+                    Intent i = new Intent(MainActivity.this, FoodLog.class);
+                    startActivity(i);
+                }
+                else if(activity.equals("Main")){
+                    Intent i = new Intent(MainActivity.this, StartPage.class);
+                    startActivity(i);
+                }
+                else if(activity.equals("Profile")){
+                    Intent i = new Intent(MainActivity.this, Profile.class);
+                    startActivity(i);
+                }
+                else if(activity.equals("Calculate")){
+                    Intent i = new Intent(MainActivity.this, CalcActivity.class);
+                    startActivity(i);
+                }
+            }
+        });
+    }
+
+    private void addDrawerItem(){
+        String[] options = {"Main","Search", "Log", "Profile", "Calculate"};
+        mAdapter = new navAdapter(this, android.R.layout.simple_list_item_1, options);
+        mDrawerList.setAdapter(mAdapter);
     }
 
     public void searchButtonClicked(View view) {
