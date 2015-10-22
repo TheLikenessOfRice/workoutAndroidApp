@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 /**
@@ -20,6 +21,9 @@ public class Profile extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        NavAdapter.addDrawerItem(this, 3);
+        NavAdapter.drawerListener(this, 3);
 
         SharedPreferences share = Profile.this.getSharedPreferences("logData", Context.MODE_PRIVATE);
 

@@ -1,82 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        >
+        android:layout_height="match_parent">
 
-        <ListView
+        <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            >
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@android:id/list"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="0dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="0dp"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#555555"
+            android:id="@+id/relativeLayout"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/curGoal"
+                android:layout_alignTop="@+id/textView21"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Calorie Goal:"
+                android:id="@+id/textView20"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentLeft="false"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentTop="false"
+                android:layout_marginTop="0dp"
+                android:layout_alignParentBottom="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/calorieGoal"
+                android:layout_alignBottom="@+id/textView20"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Current Count: "
+                android:id="@+id/textView21"
+                android:layout_above="@+id/textView20"
+                android:layout_alignLeft="@+id/textView20"
+                android:layout_alignStart="@+id/textView20" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+    <ListView
+            android:id="@+id/navList"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:id="@android:id/list"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="0dp"
+            android:layout_gravity="left|start"
+            android:background="#7d7d7d"
             />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#555555"
-        android:id="@+id/relativeLayout"
-        android:layout_weight="1"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/curGoal"
-            android:layout_alignTop="@+id/textView21"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="0dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Calorie Goal:"
-            android:id="@+id/textView20"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentLeft="false"
-            android:layout_marginLeft="10dp"
-            android:layout_alignParentTop="false"
-            android:layout_marginTop="0dp"
-            android:layout_alignParentBottom="true" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Medium Text"
-            android:id="@+id/calorieGoal"
-            android:layout_alignBottom="@+id/textView20"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="10dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Current Count: "
-            android:id="@+id/textView21"
-            android:layout_above="@+id/textView20"
-            android:layout_alignLeft="@+id/textView20"
-            android:layout_alignStart="@+id/textView20" />
-
-    </RelativeLayout>
-
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>

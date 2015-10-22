@@ -59,9 +59,9 @@ public class FoodInfo extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food_info);
 
-        mDrawerList = (ListView) findViewById(R.id.navList);
-        addDrawerItem();
-        drawerListener();
+        ListView mDrawerList = (ListView) findViewById(R.id.navList);
+        NavAdapter.addDrawerItem(this, -1);
+        NavAdapter.drawerListener(this, -1);
 
         Bundle foodData = getIntent().getExtras();
         if(foodData == null)
@@ -488,48 +488,5 @@ public class FoodInfo extends Activity{
     public void menuButtonClick(View view){
         Intent i = new Intent(this, StartPage.class);
         startActivity(i);
-    }
-
-    private void drawerListener() {
-        Log.d("nav", "here");
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String activity = (String) parent.getItemAtPosition(position);
-                Log.d("nav", "S: " + activity);
-                if (activity.equals("Log")) {
-                    close();
-                    Intent i = new Intent(FoodInfo.this, FoodLog.class);
-                    startActivity(i);
-                } else if (activity.equals("Main")) {
-                    close();
-                    Intent i = new Intent(FoodInfo.this, StartPage.class);
-                    startActivity(i);
-                } else if (activity.equals("Profile")) {
-                    close();
-                    Intent i = new Intent(FoodInfo.this, Profile.class);
-                    startActivity(i);
-                } else if (activity.equals("Calculate")) {
-                    close();
-                    Intent i = new Intent(FoodInfo.this, CalcActivity.class);
-                    startActivity(i);
-                } else if (activity.equals("Search")) {
-                    close();
-                    Intent i = new Intent(FoodInfo.this, MainActivity.class);
-                    startActivity(i);
-                }
-            }
-        });
-    }
-
-    private void addDrawerItem(){
-        String[] options = {"Main","Search", "Log", "Profile", "Calculate"};
-        mAdapter = new NavAdapter(this, android.R.layout.simple_list_item_1, options, 1);
-        mDrawerList.setAdapter(mAdapter);
-    }
-
-    public void close(){
-        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 }

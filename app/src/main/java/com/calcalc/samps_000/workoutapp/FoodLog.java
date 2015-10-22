@@ -39,6 +39,10 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log);
         Log.d("log", "clickHere");
+
+        NavAdapter.addDrawerItem(this, 2);
+        NavAdapter.drawerListener(this, 2);
+
         lv = getListView();
         lv.setTextFilterEnabled(true);
         lv.setOnItemLongClickListener(FoodLog.this);

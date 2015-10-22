@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -15,16 +15,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
+
 /**
  * Created by samps_000 on 10/20/2015.
  */
 public class NavAdapter extends ArrayAdapter<String>{
 
     int listItem;
+    private static HashMap<String, Class<?>> activities = new HashMap<>();
 
     public NavAdapter(Context context, int resource, String[] objects, int selectedItem) {
         super(context, resource, objects);
         listItem = selectedItem;
+        activities.put("Main", StartPage.class);
+        activities.put("Search", MainActivity.class);
+        activities.put("Log", FoodLog.class);
+        activities.put("Profile", Profile.class);
+        activities.put("Calculate", CalcActivity.class);
     }
 
 
@@ -38,7 +47,7 @@ public class NavAdapter extends ArrayAdapter<String>{
        return view;
     }
 
-    public static void close(DrawerLayout mDrawerLayout){
+    public static void close(DrawerLayout mDrawerLayout) {
         mDrawerLayout.closeDrawer(Gravity.LEFT);
     }
 
@@ -48,46 +57,34 @@ public class NavAdapter extends ArrayAdapter<String>{
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String activity = (String) parent.getItemAtPosition(position);
+                final String activity = (String) parent.getItemAtPosition(position);
                 Log.d("nav", "S: " + activity);
                 DrawerLayout mDrawerLayout = (DrawerLayout) currentActivity.findViewById(R.id.drawer_layout);
-                if (activity.equals("Main")) {
-                    NavAdapter.close(mDrawerLayout);
-                    
-                    if(selectedItem != 0) {
-                        Intent i = new Intent(currentActivity, StartPage.class);
-                        currentActivity.startActivity(i);
-                    }
-                }else if (activity.equals("Search")) {
+
                     NavAdapter.close(mDrawerLayout);
 
-                    if(selectedItem != 1) {
-                        Intent i = new Intent(currentActivity, MainActivity.class);
-                        currentActivity.startActivity(i);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                        if (selectedItem != 0) {
+                            Intent i = new Intent(currentActivity, activities.get(activity));
+                            currentActivity.startActivity(i);
                     }
-                }else if (activity.equals("Log")) {
-                    NavAdapter.close(mDrawerLayout);
-
-                    if(selectedItem != 2) {
-                        Intent i = new Intent(currentActivity, FoodLog.class);
-                        currentActivity.startActivity(i);
-                    }
-                } else if (activity.equals("Profile")) {
-                    NavAdapter.close(mDrawerLayout);
-
-                    if(selectedItem != 3) {
-                        Intent i = new Intent(currentActivity, Profile.class);
-                        currentActivity.startActivity(i);
-                    }
-                } else if (activity.equals("Calculate")) {
-                    NavAdapter.close(mDrawerLayout);
-
-                    if(selectedItem != 4) {
-                        Intent i = new Intent(currentActivity, CalcActivity.class);
-                        currentActivity.startActivity(i);
-                    }
-                }
+                        }
+                    }, 100);
             }
         });
+
     }
+
+    public static void addDrawerItem(Context currentActivity, int listItem){
+        ListView mDrawerList;
+        ArrayAdapter mAdapter;
+        mDrawerList = (ListView) ((Activity)currentActivity).findViewById(R.id.navList);
+        String[] options = {"Main","Search", "Log", "Profile", "Calculate"};
+        mAdapter = new NavAdapter(currentActivity, android.R.layout.simple_list_item_1, options, listItem);
+        mDrawerList.setAdapter(mAdapter);
+    }
+
+
 }

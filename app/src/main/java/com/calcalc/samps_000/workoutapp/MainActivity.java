@@ -50,8 +50,6 @@ public class MainActivity extends ListActivity {
     JSONArray foods;
     JSONObject jObject;
     String api = "http://api.nal.usda.gov/ndb/search/?format=json&q=butter&sort=r&max=25&offset=0&api_key=vdMQ5GuTHv1uDeZiOiu7kAIpTfIP9u7J35J5U6R9";
-    private ListView mDrawerList;
-    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +59,8 @@ public class MainActivity extends ListActivity {
         search.requestFocus();
         Log.d("restart", "searchrestart");
 
-        mDrawerList = (ListView) findViewById(R.id.navList);
-        addDrawerItem();
-
-        Log.d("nav", "here2");
+        ListView mDrawerList = (ListView) findViewById(R.id.navList);
+        NavAdapter.addDrawerItem(this, 1);
         NavAdapter.drawerListener(this, 1);
 
         ListView lv = getListView();
@@ -81,11 +77,6 @@ public class MainActivity extends ListActivity {
 
     }
 
-    private void addDrawerItem(){
-        String[] options = {"Main","Search", "Log", "Profile", "Calculate"};
-        mAdapter = new NavAdapter(this, android.R.layout.simple_list_item_1, options, 1);
-        mDrawerList.setAdapter(mAdapter);
-    }
 
 
 

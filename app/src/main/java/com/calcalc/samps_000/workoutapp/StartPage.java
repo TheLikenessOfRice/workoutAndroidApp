@@ -17,15 +17,11 @@ public class StartPage extends Activity{
         Log.d("testing", "start create");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_page);
-        /*
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
 
-        float dpHeight = displayMetrics.heightPixels / displayMetrics.density;
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
 
-        ImageView menu_image = (ImageView) findViewById(R.id.menu_image);
-        menu_image.getLayoutParams().height = (int) (dpHeight/4);
-        */
+        NavAdapter.addDrawerItem(this, 0);
+        NavAdapter.drawerListener(this, 0);
+
     }
 
     public void profileRowClick(View view){

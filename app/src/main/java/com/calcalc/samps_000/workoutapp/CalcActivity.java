@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
@@ -26,6 +27,11 @@ public class CalcActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calc);
+
+        ListView mDrawerList = (ListView) findViewById(R.id.navList);
+        NavAdapter.addDrawerItem(this, 4);
+        NavAdapter.drawerListener(this, 4);
+
         init();
     }
 
