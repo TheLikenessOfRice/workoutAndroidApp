@@ -22,6 +22,8 @@ public class Profile extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        Log.d("nav", "inprofile");
+
         NavAdapter.addDrawerItem(this, 3);
         NavAdapter.drawerListener(this, 3);
 

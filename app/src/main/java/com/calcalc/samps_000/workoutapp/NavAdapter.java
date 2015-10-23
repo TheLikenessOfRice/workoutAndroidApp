@@ -56,22 +56,28 @@ public class NavAdapter extends ArrayAdapter<String>{
         ListView mDrawerList = (ListView) currentActivity.findViewById(R.id.navList);
         mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 final String activity = (String) parent.getItemAtPosition(position);
                 Log.d("nav", "S: " + activity);
                 DrawerLayout mDrawerLayout = (DrawerLayout) currentActivity.findViewById(R.id.drawer_layout);
 
                     NavAdapter.close(mDrawerLayout);
 
+                    Log.d("nav", "here1");
                     new Handler().postDelayed(new Runnable() {
+
                         @Override
                         public void run() {
-                        if (selectedItem != 0) {
+
+                            Log.d("nav", "here3");
+                        if (selectedItem != position) {
+
+                            Log.d("nav", "here2");
                             Intent i = new Intent(currentActivity, activities.get(activity));
                             currentActivity.startActivity(i);
                     }
                         }
-                    }, 100);
+                    }, 300);
             }
         });
 
