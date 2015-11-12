@@ -116,7 +116,7 @@ public class FoodLog extends ListActivity implements AdapterView.OnItemLongClick
             item.put("no", no);
             item.put("key", key);
 
-            totalCal += Integer.parseInt(cal);
+            totalCal += Math.round(Double.parseDouble(cal));
 
             Log.d("saves", "T: " + title);
             Log.d("saves", "C: " + cal);

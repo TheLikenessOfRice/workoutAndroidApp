@@ -37,14 +37,6 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp" />
 
-        <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/measurementDropDown"
-            android:layout_toRightOf="@+id/servingSize"
-            android:layout_alignTop="@+id/servingSize"
-            android:layout_alignBottom="@+id/servingSize" />
-
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -299,6 +291,27 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="goToLogClick" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/servSize"
+            android:layout_alignTop="@+id/servingSize"
+            android:layout_alignRight="@+id/logAdd"
+            android:layout_alignEnd="@+id/logAdd" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Change"
+            android:id="@+id/button"
+            android:layout_alignBottom="@+id/servingSize"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:onClick="servChangeClicked" />
 
     </RelativeLayout>
     <ListView

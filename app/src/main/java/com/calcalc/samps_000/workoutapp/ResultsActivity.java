@@ -26,7 +26,8 @@ public class ResultsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-
+        NavAdapter.addDrawerItem(this, -1);
+        NavAdapter.drawerListener(this, -1);
 
         // intialize TextViews
         lose1 = (TextView) findViewById(R.id.lose_input1);
